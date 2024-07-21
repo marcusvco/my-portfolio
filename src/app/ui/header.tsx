@@ -1,20 +1,22 @@
 import { Bars3Icon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { kaiseiDecol } from "./fonts";
 
 export default function Header() {
   return (
     <header>
-      <nav className="flex justify-between">
-        <a href="/" className="flex-1">
+      <nav className="flex justify-between items-center mx-10 mt-2.5">
+        <Link href="/" className={`${kaiseiDecol.className} flex-1 text-3xl font-bold`}>
           marcusvco
-        </a>
-        <div className="space-x-4">
-          <a href="/resume">Resume</a>
-          <a href="/portfolio">Portfolio</a>
-          <a href="/contact">Contact</a>
+        </Link>
+        <div className="space-x-11 text-base">
+          <Link href="/resume">Resume</Link>
+          <Link href="/portfolio">Portfolio</Link>
+          <Link href="/contact">Contact</Link>
         </div>
-        <a href="#" className="flex flex-1 justify-end">
-          <Bars3Icon className="size-5" />
-        </a>
+        <div className="flex flex-1 justify-end">
+          <Bars3Icon className="size-6" />
+        </div>
       </nav>
     </header>
   );
