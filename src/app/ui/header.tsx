@@ -6,11 +6,16 @@ export default function Header() {
   return (
     <header>
       <nav className="flex justify-between items-center mx-10 mt-2.5">
-        <Link href="/" className={`${kaiseiDecol.className} flex-1 text-3xl font-bold`}>
-          marcusvco
-        </Link>
+        <div className="flex-1">
+          <Link
+            href="/"
+            className={`transition hover:text-dark-blue ${kaiseiDecol.className} text-3xl font-bold`}
+          >
+            marcusvco
+          </Link>
+        </div>
         <div className="space-x-11 text-base">
-          <Link href="/resume">Resume</Link>
+          <Link href="/resume" className="hover:underline underline-offset-4">Resume</Link>
           <Link href="/portfolio">Portfolio</Link>
           <Link href="/contact">Contact</Link>
         </div>
