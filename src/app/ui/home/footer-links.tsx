@@ -31,10 +31,10 @@ export default function FooterLinks() {
           >
             <Image
               src={social.icon}
-              width={30}
-              height={30}
+              width={25}
+              height={25}
               alt={social.name}
-              className="transition ease-in-out hover:animate-pulse"
+              className="transition ease-in-out hover:animate-pulse hover:scale-110"
             />
           </a>
         );

@@ -1,4 +1,3 @@
-import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { kaiseiDecol } from "./fonts";
 import HeaderLinks from "@/app/ui/header-links";
