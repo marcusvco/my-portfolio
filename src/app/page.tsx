@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import FooterLinks from "@/app/ui/home/footer-links";
 
 export default function Home() {
   const words = [
@@ -25,45 +25,7 @@ export default function Home() {
         </p>
       </div>
       <footer className="flex space-x-2.5 mb-2.5">
-        <a
-          target="_blank"
-          href="https://github.com/marcusvco"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src="/github-icon.svg"
-            width={30}
-            height={30}
-            alt="Github"
-            className="transition ease-in-out hover:animate-pulse hover:scale-110"
-          />
-        </a>
-        <a
-          target="_blank"
-          href="https://www.instagram.com/marvin.vc"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src="/instagram-icon.svg"
-            width={30}
-            height={30}
-            alt="Instagram"
-            className="transition ease-in-out hover:animate-pulse hover:scale-110"
-          />
-        </a>
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/marcus-co/"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src="/linkedin-icon.svg"
-            width={30}
-            height={30}
-            alt="Linkedin"
-            className="transition ease-in-out hover:animate-pulse hover:scale-110"
-          />
-        </a>
+        <FooterLinks />
       </footer>
     </main>
   );

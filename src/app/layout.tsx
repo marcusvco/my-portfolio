@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex flex-col h-screen ${inriaSans.className} bg-app-gray`}>
+      <body className={`flex flex-col h-screen ${inriaSans.className}`}>
         <Header />
         <div className="flex-grow">{children}</div>
       </body>
