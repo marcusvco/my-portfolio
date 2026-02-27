@@ -41,7 +41,11 @@ export function HeroSection() {
       className="panel bg-accent/5 flex min-h-screen flex-col items-center justify-center px-4 sm:px-6"
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-10 md:flex-row md:items-center">
-        <div className="bg-primary h-40 w-40 rounded-full sm:h-56 sm:w-56 md:h-72 md:w-72" />
+        <img
+          src="/src/assets/images/hero.png"
+          alt="Marcus Carvalho"
+          className="h-40 w-40 rounded-full sm:h-56 sm:w-56 md:h-72 md:w-72"
+        />
         <h1 className="font-bebas-neue text-center text-4xl leading-tight font-medium sm:text-5xl md:text-left md:text-6xl lg:text-7xl">
           Hi! My name is Marcus <br />
           and I am a{" "}
