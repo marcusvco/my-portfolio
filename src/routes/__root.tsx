@@ -1,6 +1,7 @@
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
@@ -54,13 +55,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="selection:bg-blue-600 selection:text-white">
+      <body className="antialiased selection:bg-blue-600 selection:text-white">
         <ThemeProvider>
-          <Header />
-          <div id="smooth-wrapper">
-            <div id="smooth-content">{children}</div>
-          </div>
-          <Footer />
+          <TooltipProvider>
+            <Header />
+            <div id="smooth-wrapper">
+              <div id="smooth-content">{children}</div>
+            </div>
+            <Footer />
+          </TooltipProvider>
         </ThemeProvider>
         <TanStackDevtools
           config={{
