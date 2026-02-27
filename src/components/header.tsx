@@ -47,7 +47,7 @@ export function Header() {
   })
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-background/60 backdrop-blur">
+    <header className="bg-background/60 fixed top-0 z-50 h-16 w-full backdrop-blur">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <nav className="text-foreground flex flex-1 items-center justify-between gap-4">
           {NAV_ITEMS.map((item) => {
@@ -56,9 +56,9 @@ export function Header() {
                 <button
                   key={item}
                   onClick={() => handleNavItemClick("Home")}
-                  className="cursor-pointer transition hover:text-blue-600"
+                  className="hover:bg-accent cursor-pointer rounded-lg p-2 transition hover:text-blue-600"
                 >
-                  <Pyramid size={32} />
+                  <Pyramid size={24} />
                 </button>
               )
             }

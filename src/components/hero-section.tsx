@@ -44,7 +44,7 @@ export function HeroSection() {
         <img
           src="/src/assets/images/hero.png"
           alt="Marcus Carvalho"
-          className="h-40 w-40 rounded-full sm:h-56 sm:w-56 md:h-72 md:w-72"
+          className="size-52 rounded-full sm:size-72"
         />
         <h1 className="font-bebas-neue text-center text-4xl leading-tight font-medium sm:text-5xl md:text-left md:text-6xl lg:text-7xl">
           Hi! My name is Marcus <br />
