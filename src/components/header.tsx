@@ -1,6 +1,8 @@
-import { NAV_ITEMS } from "@/consts/navItems"
+import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import { ScrollSmoother } from "gsap/all"
+import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 
 export function Header() {
@@ -9,7 +11,7 @@ export function Header() {
   const handleNavItemClick = contextSafe((item: string) => {
     gsap.to(window, {
       scrollTo: {
-        y: item,
+        y: `#${item}`,
         autoKill: true,
       },
       overwrite: true,
@@ -41,21 +43,37 @@ export function Header() {
     })
   })
 
-  return (
-    <header className="fixed top-0 z-50 w-full border-b border-b-black bg-white/50 backdrop-blur-lg">
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <h1 className="text-2xl font-bold">My Portfolio</h1>
+  useGSAP(() => {
+    gsap.from(".draw-me", { duration: 1, drawSVG: 0 })
+  })
 
-        <nav className="flex items-center gap-4">
-          {NAV_ITEMS.map((item) => (
-            <Button
-              key={item}
-              variant="ghost"
-              onClick={() => handleNavItemClick(item)}
-            >
-              {item}
-            </Button>
-          ))}
+  return (
+    <header className="fixed top-0 z-50 w-full">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        <nav className="text-foreground flex flex-1 items-center justify-between gap-4">
+          {NAV_ITEMS.map((item) => {
+            if (item === "Home") {
+              return (
+                <button
+                  key={item}
+                  onClick={() => handleNavItemClick("Home")}
+                  className="cursor-pointer transition hover:text-blue-600"
+                >
+                  <Pyramid size={32} />
+                </button>
+              )
+            }
+            return (
+              <Button
+                key={item}
+                variant="ghost"
+                onClick={() => handleNavItemClick(item)}
+                className="font-bebas-neue transition hover:text-blue-600 hover:underline"
+              >
+                {item}
+              </Button>
+            )
+          })}
         </nav>
       </div>
     </header>

@@ -1,6 +1,8 @@
-import { Section1 } from "@/components/section1"
-import { Section2 } from "@/components/section2"
-import { Section3 } from "@/components/section3"
+import { AboutSection } from "@/components/about-section"
+import { ContactSection } from "@/components/contact-section"
+import { HeroSection } from "@/components/hero-section"
+import { ProjectsSection } from "@/components/projects-section"
+import { SkillsSection } from "@/components/skills-section"
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/")({ component: App })
@@ -8,9 +10,11 @@ export const Route = createFileRoute("/")({ component: App })
 function App() {
   return (
     <>
-      <Section1 />
-      <Section2 />
-      <Section3 />
+      <HeroSection />
+      <AboutSection />
+      <ProjectsSection />
+      <SkillsSection />
+      <ContactSection />
     </>
   )
 }

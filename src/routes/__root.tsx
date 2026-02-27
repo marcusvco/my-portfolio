@@ -1,12 +1,28 @@
+import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 import gsap from "gsap"
-import { ScrollSmoother, ScrollToPlugin, ScrollTrigger } from "gsap/all"
+import {
+  DrawSVGPlugin,
+  ScrambleTextPlugin,
+  ScrollSmoother,
+  ScrollToPlugin,
+  ScrollTrigger,
+  SplitText,
+} from "gsap/all"
 import appCss from "../styles.css?url"
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother)
+gsap.registerPlugin(
+  ScrollTrigger,
+  ScrollToPlugin,
+  ScrollSmoother,
+  SplitText,
+  ScrambleTextPlugin,
+  DrawSVGPlugin,
+)
 
 export const Route = createRootRoute({
   head: () => ({
@@ -34,15 +50,18 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
-      <body>
-        <Header />
-        <div id="smooth-wrapper">
-          <div id="smooth-content">{children}</div>
-        </div>
+      <body className="selection:bg-blue-600 selection:text-white">
+        <ThemeProvider>
+          <Header />
+          <div id="smooth-wrapper">
+            <div id="smooth-content">{children}</div>
+          </div>
+          <Footer />
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: "bottom-right",
