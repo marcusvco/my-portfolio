@@ -42,7 +42,7 @@ export function HeroSection() {
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-10 md:flex-row md:items-center">
         <img
-          src="/src/assets/images/hero.png"
+          src="/hero.png"
           alt="Marcus Carvalho"
           className="size-52 rounded-full sm:size-72"
         />

@@ -15,7 +15,7 @@ export function ProjectsSection() {
         <ProjectCard
           title="Love Bound"
           description="Web application for giving gifts to your loved ones"
-          image="/src/assets/images/love-bound-mockup.png"
+          image="/love-bound-mockup.png"
           link="https://www.love-bound.shop/"
         />
       </div>
