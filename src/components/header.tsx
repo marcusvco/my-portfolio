@@ -25,7 +25,6 @@ export function Header() {
       gsap.to(panel, {
         scrollTrigger: {
           trigger: panel,
-          markers: true,
           snap: 1,
           pin: true,
           pinSpacing: false,
