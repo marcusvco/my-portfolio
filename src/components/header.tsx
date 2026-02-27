@@ -47,7 +47,7 @@ export function Header() {
   })
 
   return (
-    <header className="fixed top-0 z-50 w-full">
+    <header className="fixed top-0 z-50 w-full bg-background/60 backdrop-blur">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <nav className="text-foreground flex flex-1 items-center justify-between gap-4">
           {NAV_ITEMS.map((item) => {
