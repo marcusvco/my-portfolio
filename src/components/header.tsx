@@ -1,7 +1,7 @@
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { ScrollSmoother } from "gsap/all"
+import { ScrollTrigger, ScrollSmoother } from "gsap/all"
 import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 
@@ -19,17 +19,50 @@ export function Header() {
   })
 
   useGSAP(() => {
-    let panels = gsap.utils.toArray(".panel") as string[]
+    const content = document.getElementById("smooth-content")
+    const panels = gsap.utils.toArray(".panel") as HTMLElement[]
+    if (!content || !panels.length) return
 
-    panels.forEach((panel: string) => {
-      gsap.to(panel, {
-        scrollTrigger: {
-          trigger: panel,
-          snap: 1,
-          pin: true,
-          pinSpacing: false,
-        },
+    let sectionProgresses: number[] = []
+
+    const refreshSnap = () => {
+      const maxScroll = Math.max(
+        content.scrollHeight - window.innerHeight,
+        1,
+      )
+      sectionProgresses = panels.map((panel) =>
+        Math.min(panel.offsetTop / maxScroll, 1),
+      )
+      sectionProgresses[sectionProgresses.length - 1] = 1
+    }
+
+    const snapToSection = (progress: number) => {
+      let nearest = 0
+      let minDist = 1
+      sectionProgresses.forEach((sp) => {
+        const dist = Math.abs(progress - sp)
+        if (dist < minDist) {
+          minDist = dist
+          nearest = sp
+        }
       })
+      return nearest
+    }
+
+    refreshSnap()
+
+    ScrollTrigger.create({
+      trigger: content,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+      snap: {
+        snapTo: snapToSection,
+        duration: { min: 0.4, max: 1.2 },
+        delay: 0.2,
+        ease: "power1.inOut",
+      },
+      onRefresh: refreshSnap,
     })
   })
 
