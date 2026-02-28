@@ -1,6 +1,6 @@
 import { contactSchema } from "@/schemas/contact"
 import { useForm } from "@tanstack/react-form"
-import { SquareArrowOutUpRight } from "lucide-react"
+import { Send, SquareArrowOutUpRight } from "lucide-react"
 import { Button } from "../ui/button"
 import {
   Card,
@@ -152,7 +152,7 @@ export function ContactForm() {
             Clear
           </Button>
           <Button type="submit" form="contact-form">
-            Send
+            Send <Send />
           </Button>
         </Field>
       </CardFooter>
