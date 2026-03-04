@@ -19,16 +19,24 @@ export function getAge(birthDate: Date): number {
 
 export function revealSection(selector: string) {
   useGSAP(() => {
-    gsap.to(selector, {
+    gsap.from(selector, {
       scrollTrigger: {
         trigger: selector,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
+        toggleActions: "restart none none none",
       },
       y: 100,
-      autoAlpha: 0,
       stagger: 0.05,
     })
-  })
+    // gsap.to(selector, {
+    //   scrollTrigger: {
+    //     trigger: selector,
+    //     start: "top top",
+    //     end: "bottom bottom",
+    //     scrub: 1,
+    //   },
+    //   y: 100,
+    //   autoAlpha: 0,
+    //   stagger: 0.05,
+    // })
+  }, [selector])
 }
