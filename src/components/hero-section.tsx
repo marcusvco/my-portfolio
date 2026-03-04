@@ -2,7 +2,7 @@ import { ABOUT_TEXTS } from "@/consts/about-texts"
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { SplitText } from "gsap/all"
+import { SplitText } from "gsap/SplitText"
 
 export function HeroSection() {
   useGSAP(() => {

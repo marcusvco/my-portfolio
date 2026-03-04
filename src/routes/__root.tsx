@@ -6,14 +6,12 @@ import { TanStackDevtools } from "@tanstack/react-devtools"
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 import gsap from "gsap"
-import {
-  DrawSVGPlugin,
-  ScrambleTextPlugin,
-  ScrollSmoother,
-  ScrollToPlugin,
-  ScrollTrigger,
-  SplitText,
-} from "gsap/all"
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin"
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
+import { ScrollSmoother } from "gsap/ScrollSmoother"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { SplitText } from "gsap/SplitText"
 import appCss from "../styles.css?url"
 
 gsap.registerPlugin(

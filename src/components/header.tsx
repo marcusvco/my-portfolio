@@ -1,7 +1,8 @@
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { ScrollSmoother, ScrollTrigger } from "gsap/all"
+import { ScrollSmoother } from "gsap/ScrollSmoother"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 
