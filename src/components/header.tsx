@@ -1,8 +1,17 @@
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { ScrollSmoother } from "gsap/ScrollSmoother"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import scrollSmootherPkg from "gsap/ScrollSmoother"
+import scrollTriggerPkg from "gsap/ScrollTrigger"
+
+const ScrollSmoother =
+  ((scrollSmootherPkg as { ScrollSmoother?: unknown }).ScrollSmoother ??
+    (scrollSmootherPkg as { default?: unknown }).default ??
+    scrollSmootherPkg) as { create: (config: Record<string, unknown>) => unknown }
+const ScrollTrigger =
+  ((scrollTriggerPkg as { ScrollTrigger?: unknown }).ScrollTrigger ??
+    (scrollTriggerPkg as { default?: unknown }).default ??
+    scrollTriggerPkg) as { create: (config: Record<string, unknown>) => unknown }
 import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 

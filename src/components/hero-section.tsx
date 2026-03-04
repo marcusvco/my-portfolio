@@ -2,7 +2,12 @@ import { ABOUT_TEXTS } from "@/consts/about-texts"
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { SplitText } from "gsap/SplitText"
+import splitTextPkg from "gsap/SplitText"
+
+const SplitText =
+  ((splitTextPkg as { SplitText?: unknown }).SplitText ??
+    (splitTextPkg as { default?: unknown }).default ??
+    splitTextPkg) as { create: (target: string | Element, vars?: Record<string, unknown>) => { chars: unknown[] } }
 
 export function HeroSection() {
   useGSAP(() => {
