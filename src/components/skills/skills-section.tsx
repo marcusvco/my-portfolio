@@ -96,6 +96,7 @@ export function SkillsSection() {
             className="h-6 w-auto object-contain"
           />
         </div>
+        <p className="font-instrument-sans text-sm">And more</p>
       </div>
     </div>
   )

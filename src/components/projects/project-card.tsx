@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card"
 import { revealSection } from "@/lib/utils"
 import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
 import { ArrowUpRight } from "lucide-react"
 import { useRef } from "react"
 import { Button } from "../ui/button"
@@ -31,39 +30,44 @@ export function ProjectCard({
   const innerRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
-    const perspective = perspectiveRef.current
-    const outer = outerRef.current
-    const inner = innerRef.current
-    if (!perspective || !outer || !inner) return
+    if (typeof window === "undefined") return
+    let teardown = () => {}
+    import("gsap").then((gsapMod) => {
+      const gsap = gsapMod.default
+      const perspective = perspectiveRef.current
+      const outer = outerRef.current
+      const inner = innerRef.current
+      if (!perspective || !outer || !inner) return
 
-    gsap.set(perspective, { perspective: 650 })
+      gsap.set(perspective, { perspective: 650 })
 
-    const outerRX = gsap.quickTo(outer, "rotationX", { ease: "power3" })
-    const outerRY = gsap.quickTo(outer, "rotationY", { ease: "power3" })
-    const innerX = gsap.quickTo(inner, "x", { ease: "power3" })
-    const innerY = gsap.quickTo(inner, "y", { ease: "power3" })
+      const outerRX = gsap.quickTo(outer, "rotationX", { ease: "power3" })
+      const outerRY = gsap.quickTo(outer, "rotationY", { ease: "power3" })
+      const innerX = gsap.quickTo(inner, "x", { ease: "power3" })
+      const innerY = gsap.quickTo(inner, "y", { ease: "power3" })
 
-    const onPointerMove = (e: PointerEvent) => {
-      outerRX(gsap.utils.interpolate(2, -2, e.y / window.innerHeight))
-      outerRY(gsap.utils.interpolate(-2, 2, e.x / window.innerWidth))
-      innerX(gsap.utils.interpolate(-4, 4, e.x / window.innerWidth))
-      innerY(gsap.utils.interpolate(-4, 4, e.y / window.innerHeight))
-    }
+      const onPointerMove = (e: PointerEvent) => {
+        outerRX(gsap.utils.interpolate(2, -2, e.y / window.innerHeight))
+        outerRY(gsap.utils.interpolate(-2, 2, e.x / window.innerWidth))
+        innerX(gsap.utils.interpolate(-4, 4, e.x / window.innerWidth))
+        innerY(gsap.utils.interpolate(-4, 4, e.y / window.innerHeight))
+      }
 
-    const onPointerLeave = () => {
-      outerRX(0)
-      outerRY(0)
-      innerX(0)
-      innerY(0)
-    }
+      const onPointerLeave = () => {
+        outerRX(0)
+        outerRY(0)
+        innerX(0)
+        innerY(0)
+      }
 
-    perspective.addEventListener("pointermove", onPointerMove)
-    perspective.addEventListener("pointerleave", onPointerLeave)
-
-    return () => {
-      perspective.removeEventListener("pointermove", onPointerMove)
-      perspective.removeEventListener("pointerleave", onPointerLeave)
-    }
+      perspective.addEventListener("pointermove", onPointerMove)
+      perspective.addEventListener("pointerleave", onPointerLeave)
+      teardown = () => {
+        perspective.removeEventListener("pointermove", onPointerMove)
+        perspective.removeEventListener("pointerleave", onPointerLeave)
+      }
+    })
+    return () => teardown()
   })
 
   revealSection(".projects-card")

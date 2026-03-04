@@ -1,6 +1,5 @@
 import { useGSAP } from "@gsap/react"
 import { clsx, type ClassValue } from "clsx"
-import gsap from "gsap"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -19,24 +18,24 @@ export function getAge(birthDate: Date): number {
 
 export function revealSection(selector: string) {
   useGSAP(() => {
-    gsap.from(selector, {
-      scrollTrigger: {
-        trigger: selector,
-        toggleActions: "restart none none none",
+    if (typeof window === "undefined") return
+    Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(
+      ([gsapMod, scrollTriggerPkg]) => {
+        const gsap = gsapMod.default
+        const ScrollTrigger =
+          (scrollTriggerPkg as { ScrollTrigger?: unknown }).ScrollTrigger ??
+          (scrollTriggerPkg as { default?: unknown }).default ??
+          scrollTriggerPkg
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.from(selector, {
+          scrollTrigger: {
+            trigger: selector,
+            toggleActions: "restart none none none",
+          },
+          y: 100,
+          stagger: 0.05,
+        })
       },
-      y: 100,
-      stagger: 0.05,
-    })
-    // gsap.to(selector, {
-    //   scrollTrigger: {
-    //     trigger: selector,
-    //     start: "top top",
-    //     end: "bottom bottom",
-    //     scrub: 1,
-    //   },
-    //   y: 100,
-    //   autoAlpha: 0,
-    //   stagger: 0.05,
-    // })
+    )
   }, [selector])
 }
