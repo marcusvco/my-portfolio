@@ -1,3 +1,4 @@
+import { revealSection } from "@/lib/utils"
 import { contactSchema } from "@/schemas/contact"
 import { useForm } from "@tanstack/react-form"
 import { Send, SquareArrowOutUpRight } from "lucide-react"
@@ -30,8 +31,11 @@ export function ContactForm() {
       await sendEmail({ data: value } as any)
     },
   })
+
+  revealSection(".contact-form")
+
   return (
-    <Card className="bg-accent/10 container mx-auto flex w-full max-w-6xl flex-col gap-4">
+    <Card className="contact-form bg-accent/10 container mx-auto flex w-full max-w-6xl flex-col gap-4">
       <CardHeader>
         <CardTitle>Get in Touch</CardTitle>
         {/* <CardDescription>Card Description</CardDescription> */}

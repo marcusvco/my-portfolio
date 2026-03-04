@@ -35,12 +35,26 @@ export function HeroSection() {
     })
   })
 
+  useGSAP(() => {
+    gsap.to(".hero-section", {
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+      },
+      y: 100,
+      autoAlpha: 0,
+      stagger: 0.05,
+    })
+  })
+
   return (
     <div
       id={NAV_ITEMS[2]}
       className="panel bg-accent/5 flex min-h-screen flex-col items-center justify-center px-4 sm:px-6"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-10 md:flex-row md:items-center">
+      <div className="hero-section mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-10 md:flex-row md:items-center">
         <img
           src="/hero.png"
           alt="Marcus Carvalho"

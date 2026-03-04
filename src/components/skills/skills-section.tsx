@@ -1,6 +1,9 @@
 import { NAV_ITEMS } from "@/consts/nav-items"
+import { revealSection } from "@/lib/utils"
 
 export function SkillsSection() {
+  revealSection(".skills-section")
+
   return (
     <div
       id={NAV_ITEMS[3]}
@@ -11,7 +14,7 @@ export function SkillsSection() {
           Skills
         </h2>
 
-        <div className="bg-primary flex flex-wrap items-center justify-center gap-6 rounded-lg p-4 dark:bg-transparent">
+        <div className="skills-section bg-primary flex flex-wrap items-center justify-center gap-6 rounded-lg p-4 dark:bg-transparent">
           <img
             src="/nextjs-white.png"
             alt="Next.js"
@@ -92,11 +95,6 @@ export function SkillsSection() {
             alt="Shopify"
             className="h-6 w-auto object-contain"
           />
-          {/* <img
-            src="/fastapi-white.png"
-            alt="FastAPI"
-            className="h-4 w-auto object-contain"
-          /> */}
         </div>
       </div>
     </div>

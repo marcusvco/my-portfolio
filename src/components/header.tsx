@@ -1,7 +1,7 @@
 import { NAV_ITEMS } from "@/consts/nav-items"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { ScrollTrigger, ScrollSmoother } from "gsap/all"
+import { ScrollSmoother, ScrollTrigger } from "gsap/all"
 import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 
@@ -26,10 +26,7 @@ export function Header() {
     let sectionProgresses: number[] = []
 
     const refreshSnap = () => {
-      const maxScroll = Math.max(
-        content.scrollHeight - window.innerHeight,
-        1,
-      )
+      const maxScroll = Math.max(content.scrollHeight - window.innerHeight, 1)
       sectionProgresses = panels.map((panel) =>
         Math.min(panel.offsetTop / maxScroll, 1),
       )

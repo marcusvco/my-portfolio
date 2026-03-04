@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { revealSection } from "@/lib/utils"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ArrowUpRight } from "lucide-react"
@@ -65,10 +66,12 @@ export function ProjectCard({
     }
   })
 
+  revealSection(".projects-card")
+
   return (
     <div
       ref={perspectiveRef}
-      className="project-card-perspective mx-auto w-full max-w-4xl"
+      className="project-card-perspective projects-card mx-auto w-full max-w-4xl"
     >
       <div ref={outerRef} className="project-card-outer">
         <div ref={innerRef} className="project-card-inner">
