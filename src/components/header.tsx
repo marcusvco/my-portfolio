@@ -4,28 +4,12 @@ import { Pyramid } from "./svgs/pyramid"
 import { Button } from "./ui/button"
 
 export function Header() {
-  const { contextSafe } = useGSAP()
-
-  const handleNavItemClick = contextSafe((item: string) => {
-    if (typeof window === "undefined") return
-    import("gsap").then((gsapMod) =>
-      import("gsap/ScrollToPlugin").then((scrollToPkg) => {
-        const gsap = gsapMod.default
-        const ScrollToPlugin =
-          (scrollToPkg as { ScrollToPlugin?: unknown }).ScrollToPlugin ??
-          (scrollToPkg as { default?: unknown }).default ??
-          scrollToPkg
-        gsap.registerPlugin(ScrollToPlugin)
-        gsap.to(window, {
-          scrollTo: {
-            y: `#${item}`,
-            autoKill: true,
-          },
-          overwrite: true,
-        })
-      }),
-    )
-  })
+  function handleScrollToSection(id: string) {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
 
   useGSAP(() => {
     if (typeof window === "undefined") return
@@ -49,10 +33,7 @@ export function Header() {
       if (!content || !panels.length) return
       let sectionProgresses: number[] = []
       const refreshSnap = () => {
-        const maxScroll = Math.max(
-          content.scrollHeight - window.innerHeight,
-          1,
-        )
+        const maxScroll = Math.max(content.scrollHeight - window.innerHeight, 1)
         sectionProgresses = panels.map((panel) =>
           Math.min(panel.offsetTop / maxScroll, 1),
         )
@@ -71,7 +52,9 @@ export function Header() {
         return nearest
       }
       refreshSnap()
-      ;(ScrollTrigger as { create: (c: Record<string, unknown>) => void }).create({
+      ;(
+        ScrollTrigger as { create: (c: Record<string, unknown>) => void }
+      ).create({
         trigger: content,
         start: "top top",
         end: "bottom bottom",
@@ -97,7 +80,9 @@ export function Header() {
           (scrollSmootherPkg as { default?: unknown }).default ??
           scrollSmootherPkg
         gsap.registerPlugin(ScrollSmoother)
-        ;(ScrollSmoother as { create: (c: Record<string, unknown>) => void }).create({
+        ;(
+          ScrollSmoother as { create: (c: Record<string, unknown>) => void }
+        ).create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
           smooth: 1,
@@ -131,7 +116,7 @@ export function Header() {
               return (
                 <button
                   key={item}
-                  onClick={() => handleNavItemClick("Home")}
+                  onClick={() => handleScrollToSection("Home")}
                   className="hover:bg-accent cursor-pointer rounded-lg p-2 transition hover:text-blue-600"
                 >
                   <Pyramid size={24} />
@@ -142,7 +127,7 @@ export function Header() {
               <Button
                 key={item}
                 variant="ghost"
-                onClick={() => handleNavItemClick(item)}
+                onClick={() => handleScrollToSection(item)}
                 className="font-bebas-neue transition hover:text-blue-600 hover:underline"
               >
                 {item}

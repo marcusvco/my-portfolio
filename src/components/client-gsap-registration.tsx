@@ -13,7 +13,6 @@ export function ClientGsapRegistration() {
         drawSvgPkg,
         scrambleTextPkg,
         scrollSmootherPkg,
-        scrollToPkg,
         scrollTriggerPkg,
         splitTextPkg,
       ] = await Promise.all([
@@ -21,7 +20,6 @@ export function ClientGsapRegistration() {
         import("gsap/DrawSVGPlugin"),
         import("gsap/ScrambleTextPlugin"),
         import("gsap/ScrollSmoother"),
-        import("gsap/ScrollToPlugin"),
         import("gsap/ScrollTrigger"),
         import("gsap/SplitText"),
       ])
@@ -32,17 +30,14 @@ export function ClientGsapRegistration() {
         (drawSvgPkg as { default?: unknown }).default ??
         drawSvgPkg
       const ScrambleTextPlugin =
-        (scrambleTextPkg as { ScrambleTextPlugin?: unknown }).ScrambleTextPlugin ??
+        (scrambleTextPkg as { ScrambleTextPlugin?: unknown })
+          .ScrambleTextPlugin ??
         (scrambleTextPkg as { default?: unknown }).default ??
         scrambleTextPkg
       const ScrollSmoother =
         (scrollSmootherPkg as { ScrollSmoother?: unknown }).ScrollSmoother ??
         (scrollSmootherPkg as { default?: unknown }).default ??
         scrollSmootherPkg
-      const ScrollToPlugin =
-        (scrollToPkg as { ScrollToPlugin?: unknown }).ScrollToPlugin ??
-        (scrollToPkg as { default?: unknown }).default ??
-        scrollToPkg
       const ScrollTrigger =
         (scrollTriggerPkg as { ScrollTrigger?: unknown }).ScrollTrigger ??
         (scrollTriggerPkg as { default?: unknown }).default ??
@@ -53,7 +48,6 @@ export function ClientGsapRegistration() {
         splitTextPkg
       gsap.registerPlugin(
         ScrollTrigger,
-        ScrollToPlugin,
         ScrollSmoother,
         SplitText,
         ScrambleTextPlugin,

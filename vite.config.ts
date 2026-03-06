@@ -7,7 +7,9 @@ import { fileURLToPath, URL } from "node:url"
 import { defineConfig } from "vite"
 import viteTsConfigPaths from "vite-tsconfig-paths"
 
-const gsapStubPath = fileURLToPath(new URL("./src/gsap-ssr-stub.ts", import.meta.url))
+const gsapStubPath = fileURLToPath(
+  new URL("./src/gsap-ssr-stub.ts", import.meta.url),
+)
 
 export default defineConfig((env) => {
   // When building the server bundle (Netlify/TanStack Start), alias gsap to a stub
@@ -22,7 +24,6 @@ export default defineConfig((env) => {
           gsap: gsapStubPath,
           "gsap/ScrollTrigger": gsapStubPath,
           "gsap/ScrollSmoother": gsapStubPath,
-          "gsap/ScrollToPlugin": gsapStubPath,
           "gsap/SplitText": gsapStubPath,
           "gsap/ScrambleTextPlugin": gsapStubPath,
           "gsap/DrawSVGPlugin": gsapStubPath,

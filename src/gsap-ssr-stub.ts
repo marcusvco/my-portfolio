@@ -25,6 +25,5 @@ export default gsapStub
 export const DrawSVGPlugin = {}
 export const ScrambleTextPlugin = {}
 export const ScrollSmoother = { create: noop }
-export const ScrollToPlugin = {}
 export const ScrollTrigger = { create: noop }
 export const SplitText = { create: noop }
