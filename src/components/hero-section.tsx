@@ -12,7 +12,8 @@ export function HeroSection() {
     ]).then(([gsapMod, scrambleTextPkg, splitTextPkg]) => {
       const gsap = gsapMod.default
       const ScrambleTextPlugin =
-        (scrambleTextPkg as { ScrambleTextPlugin?: unknown }).ScrambleTextPlugin ??
+        (scrambleTextPkg as { ScrambleTextPlugin?: unknown })
+          .ScrambleTextPlugin ??
         (scrambleTextPkg as { default?: unknown }).default ??
         scrambleTextPkg
       const SplitText =
@@ -20,7 +21,14 @@ export function HeroSection() {
         (splitTextPkg as { default?: unknown }).default ??
         splitTextPkg
       gsap.registerPlugin(SplitText, ScrambleTextPlugin)
-      const split = (SplitText as { create: (target: string, vars?: Record<string, unknown>) => { chars: unknown[] } }).create(".about-text", {
+      const split = (
+        SplitText as {
+          create: (
+            target: string,
+            vars?: Record<string, unknown>,
+          ) => { chars: unknown[] }
+        }
+      ).create(".about-text", {
         type: "chars, words",
       })
       function scrambleText(index: number) {
@@ -86,9 +94,10 @@ export function HeroSection() {
         />
         <h1 className="font-bebas-neue text-center text-4xl leading-tight font-medium sm:text-5xl md:text-left md:text-6xl lg:text-7xl">
           Hi! My name is Marcus <br />
-          and I am a{" "}
+          and I am a
+          <br className="sm:hidden" />{" "}
           <span className="about-text scramble inline-block min-w-[12ch] font-bold text-blue-600 sm:min-w-[18ch]">
-            software engineer
+            {ABOUT_TEXTS[0]}
           </span>
         </h1>
       </div>
