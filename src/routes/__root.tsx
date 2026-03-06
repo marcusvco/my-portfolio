@@ -1,3 +1,4 @@
+import { ClientGsapRegistration } from "@/components/client-gsap-registration"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -5,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { TanStackDevtools } from "@tanstack/react-devtools"
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
-import { ClientGsapRegistration } from "@/components/client-gsap-registration"
 import appCss from "../styles.css?url"
 
 export const Route = createRootRoute({
@@ -19,7 +19,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Portfolio",
+        title: "Portfolio | Marcus Oliveira",
       },
     ],
     links: [
