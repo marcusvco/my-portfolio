@@ -15,3 +15,7 @@ todos.json
 
 # Local Netlify folder
 .netlify
+
+.dev.vars*
+!.dev.vars.example
+!.env.example

@@ -7,6 +7,8 @@ import { fileURLToPath, URL } from "node:url"
 import { defineConfig } from "vite"
 import viteTsConfigPaths from "vite-tsconfig-paths"
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 const gsapStubPath = fileURLToPath(
   new URL("./src/gsap-ssr-stub.ts", import.meta.url),
 )
@@ -36,7 +38,11 @@ export default defineConfig((env) => {
       tailwindcss(),
       tanstackStart(),
       viteReact(),
-      netlify(),
+      cloudflare({
+        viteEnvironment: {
+          name: "ssr"
+        }
+      }),
     ],
-  }
+  };
 })
