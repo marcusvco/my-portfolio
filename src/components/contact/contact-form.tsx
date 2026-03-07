@@ -1,7 +1,8 @@
 import { revealSection } from "@/lib/utils"
 import { contactSchema } from "@/schemas/contact"
 import { useForm } from "@tanstack/react-form"
-import { Send, SquareArrowOutUpRight } from "lucide-react"
+import { Loader2, Send, SquareArrowOutUpRight } from "lucide-react"
+import { useState } from "react"
 import { Button } from "../ui/button"
 import {
   Card,
@@ -18,6 +19,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import { sendEmail } from "./contact.server"
 
 export function ContactForm() {
+  const [loading, setLoading] = useState(false)
+
   const form = useForm({
     defaultValues: {
       name: "",
@@ -28,7 +31,9 @@ export function ContactForm() {
       onSubmit: contactSchema,
     },
     onSubmit: async ({ value }) => {
+      setLoading(true)
       await sendEmail({ data: value } as any)
+      setLoading(false)
     },
   })
 
@@ -155,8 +160,8 @@ export function ContactForm() {
           <Button type="button" variant="outline" onClick={() => form.reset()}>
             Clear
           </Button>
-          <Button type="submit" form="contact-form">
-            Send <Send />
+          <Button type="submit" form="contact-form" disabled={loading}>
+            {loading ? <Loader2 className="animate-spin" /> : "Send"} <Send />
           </Button>
         </Field>
       </CardFooter>
